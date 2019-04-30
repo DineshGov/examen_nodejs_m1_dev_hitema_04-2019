@@ -5,11 +5,18 @@ module.exports = class PeopleService {
         this.peoples = JSON.parse(fs.readFileSync(__dirname + '/people.json', 'utf8'));
     }
 
+    /*isValid(){
+	    return message.author && message.quote;
+    }*/
+
     updatePeople(id, people) {
-        // To be implemented!
+        const peopleIndex = this.peoples.findIndex( people => people.id == id );
+	    if (peopleIndex === -1) return null;
+	    this.peoples[peopleIndex] = people;
+	    return people;
     }
     
     getPeople(filters) {
-        // To be implemented!
+        return Promise.resolve(this.peoples);
     }
 }
